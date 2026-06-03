@@ -13,5 +13,39 @@
         <maven.compiler.target>24</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+    <dependencies>
+        <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-core</artifactId>
+            <version>12.0.3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-mysql</artifactId>
+            <version>12.0.3</version>
+        </dependency>
+
+        <!-- MySQL JDBC драйвер -->
+        <dependency>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+            <version>8.0.33</version>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.flywaydb</groupId>
+                <artifactId>flyway-maven-plugin</artifactId>
+                <version>12.0.3</version>
+
+                <configuration>
+                    <url>jdbc:mysql://localhost:3306/Online_curs</url>
+                    <user>root</user>
+                    <password>Alek20089583</password>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
