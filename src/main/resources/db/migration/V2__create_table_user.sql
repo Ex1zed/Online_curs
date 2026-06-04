@@ -1,0 +1,8 @@
+CREATE TABLE `Online_curs`.`User` (
+  `idUser` INT NOT NULL AUTO_INCREMENT,
+  `Name` VARCHAR(45) NULL,
+  `Age` VARCHAR(45) NULL,
+  `Email` VARCHAR(200) NULL,
+  PRIMARY KEY (`idUser`),
+  UNIQUE INDEX `idUser_UNIQUE` (`idUser` ASC) VISIBLE,
+  UNIQUE INDEX `Email_UNIQUE` (`Email` ASC) VISIBLE);
