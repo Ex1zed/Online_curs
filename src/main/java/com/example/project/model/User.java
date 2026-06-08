@@ -1,47 +1,97 @@
 package com.example.project.model;
 
+import jakarta.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+
+@Entity
+@Table(name = "User")
 public class User {
-    private int uniqueIDuser;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idUser")  // ← название колонки в БД
+    private int id;
+
+    @Column(name = "Name", nullable = false, length = 100)
     private String name;
+
+    @Column(name = "Age")
     private int age;
+
+    @Column(name = "Email", nullable = false, unique = true, length = 100)
     private String email;
 
-    public User(String name, int age, String email, int uniqueIDuser){
-        setName(name);
-        setAge(age);
-        setEmail(email);
-        setUniqueIDuser(uniqueIDuser);
+    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Curs> cursList = new ArrayList<>();
+
+    public User() {
     }
 
-    public void setName(String name) {
+    public User(String name, int age, String email) {
         this.name = name;
-    }
-
-    public void setAge(int age) {
         this.age = age;
-    }
-
-    public void setEmail(String email) {
         this.email = email;
     }
 
-    public int getAge() {
-        return age;
+    // Getters и Setters
+    public int getId() {
+        return id;
     }
 
-    public String getEmail() {
-        return email;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
         return name;
     }
 
-    public int getUniqueIDuser() {
-        return uniqueIDuser;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setUniqueIDuser(int uniqueID) {
-        this.uniqueIDuser = uniqueID;
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public List<Curs> getCursList() {
+        return cursList;
+    }
+
+    public void setCursList(List<Curs> cursList) {
+        this.cursList = cursList;
+    }
+
+    public void addCurs(Curs curs) {
+        cursList.add(curs);
+        curs.setOwner(this);
+    }
+
+    public void removeCurs(Curs curs) {
+        cursList.remove(curs);
+        curs.setOwner(null);
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", age=" + age +
+                ", email='" + email + '\'' +
+                '}';
     }
 }
