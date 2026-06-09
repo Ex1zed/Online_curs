@@ -8,7 +8,7 @@ import java.util.List;
 
 public class UserService {
 
-    // ✅ Вместо ArrayList - репозиторий
+    //Вместо ArrayList - репозиторий
     private UserRepository userRepository;
 
     // Конструктор для внедрения репозитория
@@ -21,18 +21,18 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    // ✅ Сохранение пользователя через репозиторий
+    //Сохранение пользователя через репозиторий
     public void addStudent(User user) {
         userRepository.save(user);
         System.out.println("Пользователь добавлен: " + user.getName() + " (ID: " + user.getId() + ")");
     }
 
-    // ✅ Получение всех пользователей через репозиторий
+    //Получение всех пользователей через репозиторий
     public List<User> getAllStudents() {
         return userRepository.findAll();
     }
 
-    // ✅ Печать всех пользователей
+    //Печать всех пользователей
     public void printStudents() {
         List<User> users = userRepository.findAll();
         if (users.isEmpty()) {
@@ -48,7 +48,7 @@ public class UserService {
         }
     }
 
-    // ✅ Дополнительные методы, которые могут пригодиться
+    // Дополнительные методы, которые могут пригодиться
 
     // Поиск пользователя по ID
     public User getUserById(int id) {
